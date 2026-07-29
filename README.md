@@ -35,7 +35,7 @@ ngrok http 3000
 Set the Twilio Voice webhook for your phone number to:
 
 ```text
-https://<your-ngrok-id>.ngrok-free.app/voice
+https://dial42demo.loca.lt/voice
 ```
 
 ## 5. Deploy to Azure App Service
