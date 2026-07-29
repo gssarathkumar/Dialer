@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DIAL42 Prototype</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #071a2f;
+        --surface: rgba(255, 255, 255, 0.96);
+        --text: #0f172a;
+        --muted: #475569;
+        --primary: #0f4c81;
+        --primary-2: #1d4ed8;
+        --accent: #14b8a6;
+        --border: #dbe4f0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        background:
+          radial-gradient(circle at top left, rgba(20, 184, 166, 0.22), transparent 30%),
+          linear-gradient(135deg, #061427 0%, #0e2a4a 45%, #113d65 100%);
+        color: var(--text);
+      }
+
+      .shell {
+        width: min(100%, 620px);
+        display: grid;
+        gap: 1rem;
+      }
+
+      .hero {
+        padding: 0.2rem 0 0.4rem;
+        color: #f8fbff;
+      }
+
+      .brand-row {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--accent), #2dd4bf);
+        color: white;
+        font-weight: 800;
+        font-size: 1.1rem;
+        box-shadow: 0 10px 24px rgba(20, 184, 166, 0.25);
+      }
+
+      .eyebrow {
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #7dd3fc;
+        margin-bottom: 0.2rem;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.7rem, 3vw, 2.3rem);
+        line-height: 1.15;
+      }
+
+      .hero p {
+        margin: 0;
+        color: rgba(248, 251, 255, 0.86);
+        font-size: 1rem;
+        max-width: 560px;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 24px;
+        box-shadow: 0 24px 60px rgba(2, 8, 23, 0.28);
+        padding: 1.35rem;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+        margin-bottom: 1rem;
+      }
+
+      .meta span {
+        padding: 0.4rem 0.7rem;
+        border-radius: 999px;
+        background: #eef6ff;
+        color: var(--primary);
+        font-size: 0.85rem;
+        font-weight: 700;
+      }
+
+      form {
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      label {
+        font-weight: 700;
+        color: #1e293b;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.95rem 1rem;
+        font-size: 1rem;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(15, 76, 129, 0.12);
+      }
+
+      button {
+        width: 100%;
+        padding: 0.95rem 1rem;
+        font-size: 1rem;
+        font-weight: 700;
+        color: white;
+        border: none;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        cursor: pointer;
+        transition: transform 0.16s ease, box-shadow 0.16s ease;
+        box-shadow: 0 12px 28px rgba(15, 76, 129, 0.2);
+      }
+
+      button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 32px rgba(15, 76, 129, 0.25);
+      }
+
+      .status {
+        margin-top: 1rem;
+        padding: 0.95rem 1rem;
+        border-radius: 14px;
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        color: var(--muted);
+      }
+
+      .status.loading {
+        background: #eff6ff;
+        color: #1d4ed8;
+        border-color: #bfdbfe;
+      }
+
+      .status.success {
+        background: #ecfdf5;
+        color: #047857;
+        border-color: #a7f3d0;
+      }
+
+      .status.error {
+        background: #fef2f2;
+        color: #b91c1c;
+        border-color: #fecaca;
+      }
+
+      .tips {
+        margin: 1rem 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 0.5rem;
+        color: var(--muted);
+      }
+
+      .tips li {
+        padding: 0.6rem 0.7rem;
+        border-radius: 999px;
+        background: #f8fafc;
+        font-size: 0.95rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="brand-row">
+          <div class="brand-mark">C</div>
+          <div>
+            <div class="eyebrow">Core42 · Secure Communications</div>
+            <h1>Enterprise dialer experience</h1>
+          </div>
+        </div>
+        <p>Launch trusted outbound voice workflows with a polished interface aligned to Core42’s digital standards.</p>
+      </section>
+
+      <section class="card">
+        <div class="meta">
+          <span>Secure</span>
+          <span>Compliant</span>
+          <span>Enterprise-ready</span>
+        </div>
+
+        <form id="dialForm">
+          <label for="phonenumber">Phone number</label>
+          <input id="phonenumber" name="phonenumber" placeholder="+15551234567" required />
+          <button type="submit">Dial now</button>
+        </form>
+
+        <div id="status" class="status">Waiting for a call request...</div>
+
+        <ul class="tips">
+          <li>Use an international format such as +15551234567.</li>
+          <li>Twilio will route the call through your configured voice webhook.</li>
+        </ul>
+      </section>
+    </main>
+
+    <script>
+      const form = document.getElementById('dialForm');
+      const status = document.getElementById('status');
+
+      function setStatus(message, type = '') {
+        status.textContent = message;
+        status.className = `status ${type}`.trim();
+      }
+
+      async function readResponseData(response) {
+        const contentType = response.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+          return response.json();
+        }
+
+        const text = await response.text();
+        try {
+          return JSON.parse(text);
+        } catch (error) {
+          return { error: text || 'Unexpected server response.' };
+        }
+      }
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        setStatus('Placing call...', 'loading');
+
+        try {
+          const response = await fetch('/call', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+          });
+
+          const result = await readResponseData(response);
+          if (response.ok) {
+            setStatus(`Call initiated. SID: ${result.sid}`, 'success');
+          } else {
+            setStatus(`Error: ${result.error || 'Unable to place the call.'}`, 'error');
+          }
+        } catch (error) {
+          console.error('Call request failed:', error);
+          setStatus('Unable to reach the service. Please try again in a moment.', 'error');
+        }
+      });
+    </script>
+  </body>
+</html>
