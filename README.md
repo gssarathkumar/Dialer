@@ -1,6 +1,6 @@
 # DIAL42 Prototype
 
-This prototype shows a simple way to:
+This prototype shows a simple way to: added
 - create a Twilio voice dialer UI,
 - place outbound calls from a web form,
 - answer inbound calls through a Twilio webhook.
